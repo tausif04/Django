@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Dashboard - Home{% endblock %}</title>
+    {% comment %} <script src="//cdn.tailwindcss.com"></script> {% endcomment %}
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+      <!-- Top Navigation Bar -->
+      {% include 'Component/header.html' %}
+
+      <div class="flex flex-1">
+        <!-- Sidebar -->
+        {% include 'Component/sidebar.html' %}
+
+        <!-- Main Content -->
+        {% block content %}
+        {% endblock %}
+      </div>
+    
+      <!-- Footer -->
+      {% include 'Component/footer.html' %}
+    </div>
+  </body>   
+</html>

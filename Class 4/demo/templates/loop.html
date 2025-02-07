@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+<body>
+    <h1>Your Team Members</h1>
+    <h2>Total Members = {{data|length}}</h2>
+    <ul>
+        <!-- {% for name in names %}
+            <li><h3>{{name|upper}}</h3></li>
+        {% endfor %} -->
+        {%for name,age in data%}
+            <li><h5>{{name|upper}} - {{age}}</h5></li>
+        {%endfor%}
+       
+    <!-- <h2>{{names}}</h2> -->
+    </ul>
+
+    <h2>Todays Temperature is {{tempt}} degree celcius</h2>
+    <p>
+        {% if tempt < 20 %}
+            <h4>It's cold outside</h4>
+        {% elif tempt < 30 %}
+            <h4>It's moderate outside</h4>
+        {% elif tempt <  40 %}
+            <h4>It's hot outside</h4>
+        {% else %}
+            <h4>It's very hot outside</h4>
+        {% endif %}
+    </p>
+    <h3>The number {{number}} is {% if number|divisibleby:2 %} even {% else %} odd {% endif %}</h3>
+</body>
+</html>
