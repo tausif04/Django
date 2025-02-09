@@ -19,7 +19,7 @@ from django.urls import path
 from django.http import HttpResponse,JsonResponse
 import json
 from  django.views.decorators.csrf import csrf_exempt
-
+from sampleapp.views import form_view
 def home(request):
     return JsonResponse(
         {'message': "Hello, World!",
@@ -65,8 +65,11 @@ def methods_test(request):
         return JsonResponse({'message':'Data Deleted'})
     return JsonResponse({'message':'Data Created'})
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('methods_test/', methods_test)
+    path('methods_test/', methods_test),
+    path('form_view/', form_view),
 ]
