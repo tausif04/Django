@@ -4,20 +4,43 @@ from django.http import HttpResponse,JsonResponse
 
 from .forms import TaskForm
 
-form=TaskForm()
-context={
-        'myform':form,
-    }
+from django.views import View
 
 
-def form_view(request):
-    if request.method == 'POST':
+class TaskCreateView(View):
+    form_class = TaskForm
+    def get(self,request):
+        form = self.form_class()
+        context= {
+            "form":form
+        }
+        return render(
+            request,
+            'task_create.html',
+            context
+        )
+    
+    def post(self,request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponse("Form submitted successfully")
         else:
-            context['myform']=form
-            return render(request, 'form.html',context)
-    return render(request, 'form.html',context)
+            context={
+                "form":form
+            }
+            return render(request, 'task_create.html',context)
+
+# def form_view(request):
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse("Form submitted successfully")
+#         e    lse:
+#             context={
+#                 "form":form
+#             }
+#             return render(request, 'task_create.html',context)
+#     return render(request, 'task_create.html',context)
 

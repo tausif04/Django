@@ -19,7 +19,7 @@ from django.urls import path
 from django.http import HttpResponse,JsonResponse
 import json
 from  django.views.decorators.csrf import csrf_exempt
-from sampleapp.views import form_view
+from sampleapp.views import form_view, TaskCreateView
 def home(request):
     return JsonResponse(
         {'message': "Hello, World!",
@@ -71,5 +71,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('methods_test/', methods_test),
-    path('form_view/', form_view),
+    path('form_view/', TaskCreateView.as_view()),
+    # path('form_view/', form_view),
 ]
