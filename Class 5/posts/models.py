@@ -10,3 +10,8 @@ class Post(models.Model): #posts_post
 
     def __str__(self):
         return self.title
+    
+class PostExtraInfo(models.Model):
+    post=models.OneToOneField(Post, on_delete=models.CASCADE)
+    rating=models.FloatField()
+    tags=models.JSONField()

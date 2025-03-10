@@ -21,6 +21,8 @@ def index(request):
     #     published=True,
     # )
 
+
+
     ## ----!Read a post!---- ##
     #All posts
     # posts=Post.objects.all() #SELECT * FROM posts_post
@@ -31,17 +33,20 @@ def index(request):
     # print(posts[0].title) #print the title of the first post
     # print(posts[0].content) #print the content of the first post
 
-    # #Filter posts
+    # #----Filter posts-----#   
     # # posts=Post.objects.filter(title="My first post")
     # posts=Post.object.get(title="My second post") #SELECT * FROM posts_post WHERE title='My first post'
     # print(posts)
     # posts=Post.object.get(id=3) #SELECT * FROM posts_post WHERE id=1
     # print(posts)
 
-    Post.objects.create(
-        title="My third post",
-        content="This is my third post. I hope you like it.",
-        published=False,
-    )
+    # Post.objects.create(
+    #     title="My third post",
+    #     content="This is my third post. I hope you like it.",
+    #     published=False,
+    # )
+
+    Post.objects.all().exclude(published=False) #SELECT * FROM posts_post WHERE published=1
+    Post.objects.all().filter(published=False).delete() #DELETE FROM posts_post WHERE published=0
 
     return HttpResponse( "Hello, world. You're at the posts index." )
