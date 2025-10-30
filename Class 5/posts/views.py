@@ -83,7 +83,45 @@ def index(request):
     
     # Or we can do it in one line
     # Post.objects.all().delete()
-    Post.objects.all().exclude(published=False) #SELECT * FROM posts_post WHERE published=1
-    Post.objects.all().filter(published=False).delete() #DELETE FROM posts_post WHERE published=0
+    # Post.objects.all().exclude(published=False) #SELECT * FROM posts_post WHERE published=1
+    # Post.objects.all().filter(published=False).delete() #DELETE FROM posts_post WHERE published=0
+
+    # Comment.objects.create(
+    #     content="This is a comment.",
+    #     post_id=1  # Assuming a post with ID 1 exists 
+    # )
+    # Comment.objects.create(
+    #     content="This is my 2nd comment.",
+    #     post_id=1  # Assuming a post with ID 1 exists 
+    # )
+    # Comment.objects.create(
+    #     content="This is my 3rd comment.",
+    #     post_id=1  # Assuming a post with ID 1 exists 
+    # )
+
+    # post and comment one to many relationship
+    # Retrieving comments for a post
+    # post = Post.objects.get(id=1)
+    # comments = post.comment_set.all()
+
+   # Accessing related comments
+   # print(comments)
+
+
+    # creating tag
+    # Tag.objects.bulk_create(
+    #      [
+    #           Tag(name="Django"),
+    #           Tag(name="Python"),
+    #           Tag(name="Web Development"),
+    #      ]
+    # )
+    # Associating tags with a post
+    tag1 = Tag.objects.get(id=1)
+    tag2 = Tag.objects.get(id=2)
+    post = Post.objects.get(id=1)
+    post.tags.add(tag1, tag2)
+    print(post.tags.all())
+
 
     return HttpResponse( "Hello, world. You're at the posts index." )
