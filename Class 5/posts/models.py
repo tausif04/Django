@@ -15,3 +15,10 @@ class PostExtraInfo(models.Model):
     post=models.OneToOneField(Post, on_delete=models.CASCADE)
     rating=models.FloatField()
     tags=models.JSONField()
+        def __str__(self):
+        return f"Extra info for {self.post.title}"
+    
+
+class Comment(models.Model):
+    content = models.TextField() #posts_comment_content
+    post = models.ForeignKey(Post, on_delete=models.CASCADE) #posts_comment_post
