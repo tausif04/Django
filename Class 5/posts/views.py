@@ -67,7 +67,22 @@ def index(request):
     # posts=Post.objects.filter(id__range=[1,3]) #SELECT * FROM posts_post WHERE id BETWEEN 1 AND 3
     # print(posts)
 
+    
+    # Update
+    posts = Post.objects.filter(published=True)
+    # for post in posts:   # Loop is the worst way to update multiple records
+    #     post.published = False
+    #     post.save()
+    posts.update(published=False)  # This is the best way to update multiple records.
+                                      #It is not  for single record update.
 
+    # Delete
+    # posts = Post.objects.all()
+    # for post in posts:
+    #     post.delete()
+    
+    # Or we can do it in one line
+    # Post.objects.all().delete()
     Post.objects.all().exclude(published=False) #SELECT * FROM posts_post WHERE published=1
     Post.objects.all().filter(published=False).delete() #DELETE FROM posts_post WHERE published=0
 
